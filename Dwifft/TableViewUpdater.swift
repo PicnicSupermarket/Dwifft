@@ -11,12 +11,12 @@ import UIKit
 public class TableViewUpdater: DiffableViewUpdater {
     weak var tableView: UITableView?
 
-    private let insertionAnimation: UITableViewRowAnimation
-    private let deletionAnimation: UITableViewRowAnimation
+    private let insertionAnimation: UITableView.RowAnimation
+    private let deletionAnimation: UITableView.RowAnimation
 
     public init(tableView: UITableView,
-                insertionAnimation: UITableViewRowAnimation = .automatic,
-                deletionAnimation: UITableViewRowAnimation = .automatic) {
+                insertionAnimation: UITableView.RowAnimation = .automatic,
+                deletionAnimation: UITableView.RowAnimation = .automatic) {
         self.tableView = tableView
         self.insertionAnimation = insertionAnimation
         self.deletionAnimation = deletionAnimation

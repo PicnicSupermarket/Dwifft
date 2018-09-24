@@ -10,7 +10,7 @@ import Foundation
 import Dwifft
 
 class StuffDataSouce {
-    private let possibleStuff = [
+    private var possibleStuff = [
         "Cats",
         "Onions",
         "A used lobster",
@@ -25,15 +25,8 @@ class StuffDataSouce {
     // I shamelessly stole this list of things from my friend Pasquale's blog post because I thought it was funny. You can see it at https://medium.com/elepath-exports/spatial-interfaces-886bccc5d1e9
 
     private var randomArrayOfStuff: [String] {
-        var possibleStuff = self.possibleStuff
-        for i in 0..<possibleStuff.count - 1 {
-            let j = Int(arc4random_uniform(UInt32(possibleStuff.count - i))) + i
-            if i != j {
-                swap(&possibleStuff[i], &possibleStuff[j])
-            }
-        }
-        let subsetCount: Int = Int(arc4random_uniform(3)) + 5
-        return Array(possibleStuff[0...subsetCount])
+        let randomPossibleStuff = self.possibleStuff.shuffled()
+        return Array(randomPossibleStuff[0...Int.random(in: 3...5)])
     }
 
     private func randomArrayOfStuffs(count: Int) -> [[String]] {
