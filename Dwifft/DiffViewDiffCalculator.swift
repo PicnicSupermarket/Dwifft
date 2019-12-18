@@ -17,20 +17,13 @@ public protocol ViewOperationsType {
 }
 
 public class DiffViewDiffCalculator<T: Equatable> {
-    private var lastRows: [[T]]
     private let viewUpdater: DiffableViewUpdater
 
-    public init(viewUpdater: DiffableViewUpdater, initialRows: [[T]] = []) {
+    public init(viewUpdater: DiffableViewUpdater) {
         self.viewUpdater = viewUpdater
-        self.lastRows = initialRows
     }
 
-    public func update(rows newRows: [[T]], animated: Bool, completion: @escaping () -> Void) {
-        update(oldRows: lastRows, newRows: newRows, animated: animated, completion: completion)
-        lastRows = newRows
-    }
-
-    private func update(oldRows: [[T]], newRows: [[T]], animated: Bool, completion: @escaping () -> Void) {
+    public func update(oldRows: [[T]], newRows: [[T]], animated: Bool, completion: @escaping () -> Void) {
         assert(oldRows.count == newRows.count)
 
         let operations: ViewOperations<T> = ViewOperations()
